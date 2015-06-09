@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+	  <div class="panel-heading">
+			<h3 class="panel-title">Tabela wyników</h3>
+	  </div>
+	  <div class="panel-body">
+	  		<h4  ng-show="users.length == 0">Brak wyników</h4>
+			<div class="table-responsive" ng-hide="users.length == 0" >
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>Imie</th>
+							<th>Wygrana</th>
+							<th>Czas</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="user in users | orderBy:'level'">
+							<td ng-bind="user.id" ></td>
+							<td ng-bind="user.name" ></td>
+							<td ng-bind="Game.getPrice(user.level)" ></td>
+							<td ng-bind="toSecond(user.time)" ></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+	  </div>
+</div>

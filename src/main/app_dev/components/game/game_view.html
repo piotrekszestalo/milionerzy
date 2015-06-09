@@ -1,0 +1,68 @@
+
+<br>
+<div ng-hide="Game.isGameOver()" >
+	<div ng-hide="Game.isLogin()">
+		<div class="panel panel-default">
+			<div class="panel-body">
+			   <form ng-submit="login()">
+					<div class="form-group">
+						<label>Podaj swoje imię i naciśnij enter: </label>
+						<input type="text" ng-model="user.name" id="input" class="form-control"  >	
+					</div>
+				</form>	
+			</div>
+		</div>
+		
+	</div>
+
+	<div ng-show="Game.isLogin()">
+		
+		<h3> {{Game.getQuestionNum()}}. {{Game.getQuestion().name}}  </h3>
+		<br>
+		<ul class="list-group">
+			<li class="list-group-item"  ng-class="{ 'good': answer.good }" ng-repeat="answer in Game.getQuestion().answers  |  orderBy:'position'" >
+				{{answer.position}}. {{answer.name}} 
+			</li>
+		</ul>
+		<br>
+		<div class="btn-group">
+			<button type="button" ng-repeat="bonus in Game.bonuses" 
+			class="btn btn-default"
+			 ng-bind='bonus.name' 
+			 ng-hide="bonus.was_used"
+			 ng-click="Game.useBonus(bonus)"
+			 ></button>
+		</div>
+		<br>
+		<br>
+		<div class="btn-group">
+			<button type="button"
+				ng-class="{ 'good': answer.good }"
+				class="btn btn-default" 				
+				ng-repeat="answer in Game.getQuestion().answers |  orderBy:'position'" 
+				ng-click="Game.checkAnswer(answer)" >{{answer.position}}
+
+			</button>
+		</div>
+	</div>	
+	<style type="text/css">
+	.good {
+		background: rgb(54, 245, 54) !important;
+	}
+	</style>
+
+</div>
+<div ng-show="Game.isGameOver()">
+	
+	<div  ng-show="Game.isWin()" >
+		<h1>Wygrałeś milion złotych</h1>
+		<br>
+		<h4>Kliknij  <a href="#/ranking">tutaj</a>, aby zobaczyć tabelę wyników </h4>			
+	</div>
+	<div ng-hide="Game.isWin()">
+		<h3>Koniec gry {{Game.getUser().name}}.</h3>
+		<h4>Kliknij  <a href="#/ranking">tutaj</a>, aby zobaczyć tabelę wyników </h4>			
+	</div>
+			
+
+</div>

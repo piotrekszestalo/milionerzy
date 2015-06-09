@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Milionerzy</title>
+    
+    <link rel="stylesheet" href="assets/css/libs.css">    
+    <link rel="stylesheet" href="assets/css/index.css">
+    
+    <script src="assets/js/index.js"></script>
+
+    <link rel="icon" type="image/x-icon" href="img/tt.ico">
+  </head>
+  <body ng-app="millionaries" ng-controller="AppCtrl" >
+    <div  id="container" class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10" >
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">      
+              <a class="navbar-brand" href="#/">Milionerzy</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" >
+             
+              <ul class="nav navbar-nav navbar-right">
+                <li ng-hide="Game.isLogin()" ><a href="#/game">Start</a></li>                
+                <li ng-show="Game.isLogin()" ><a href="#/game">Zalogowany ({{Game.getUser().name}})</a></li>                
+                <li><a href="#/ranking">Lista wyników</a></li>                
+              </ul>
+            </div><!-- /.navbar-collapse -->
+
+        </div><!-- /.container-fluid -->
+      </nav>
+
+      <div ui-view="master" id="masterUI" >
+
+      </div>
+    </div>
+    
+  </body>
+</html>
